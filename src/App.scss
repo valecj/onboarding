@@ -1,0 +1,451 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#root {
+    width: 50vw;
+    padding: 3em 0 9em;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+.container {
+  width: 100%;
+}
+body {
+  background: #F2F2F2;
+  display: grid;
+  justify-content: center;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Greycliff CF', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.main-content {
+  display: none;
+}
+
+ul {
+  width: 70vw;
+  margin: 0;
+  padding: 2em 0;
+  list-style: none;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  
+  input, label, li {
+    cursor: pointer;
+  }
+}
+
+
+.box {
+  width: 90px;
+  background: #fff;
+  margin-bottom: 1em;
+  margin-right: 1em;  
+  padding: 25px 20px;
+  opacity: 0;
+  border-radius: 8px;
+  position: relative;
+  animation: forwards 0.6s animate-box;
+  
+  label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    border-radius: 8px;
+  }
+  input {
+        z-index: 9;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 14%;
+    margin-left: 15px;
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  @for $i from 1 through 13 {
+    &:nth-of-type(#{$i}) {
+      animation-delay: $i * 0.13s;
+    }
+  }
+  
+  @keyframes animate-box {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+input[type=checkbox]:checked + label {
+  background: #5459e6cc;
+  color: #fff;
+}
+
+.userMessage {
+  padding: 15px 23px;
+  color: #fff;
+  background: #5459e6cc;
+  margin-left: auto;
+  max-width: 13em;
+  width: fit-content;
+  border-top-left-radius: 10px;
+  p { margin: 0; }
+}
+
+.message {
+  opacity: 0;
+  width: fit-content;
+  max-width: 17em;
+  margin-bottom: 0.5em;
+  padding: 15px 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  animation: .5s forwards animate-message;
+
+  p {
+    margin: 0;
+  }
+  @keyframes animate-message {
+    from {
+      opacity: 0;
+       transform: scale(0.95);
+    }
+    
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+.typing {
+  display: flex;
+}
+.kimoMessage {
+  background: #EBECF0;
+  border-top-right-radius: 10px;
+  
+  .circle {
+    border-radius: 50%;
+    margin: 3px;
+    height: 8px;
+    width: 8px;
+    background: #a9a9a9;
+    animation: bounce 1s infinite ease;
+   
+   @for $i from 1 through 3 {
+    &:nth-of-type(#{$i}) {
+      animation-delay: $i * 0.13s;
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { opacity:1;}
+  
+    60% {
+      transform: translateY(6px);
+      opacity: 0.4;
+    }
+   }
+  }
+}
+
+
+.name {
+  width: 100%;
+  margin-top: 2em;
+  display: flex;
+  input {
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-size: 14px;
+    border: none; 
+    padding: 15px 22px;
+    border-radius: 5px;
+    margin-right: 1em;
+    outline: none;
+    transition: 0.2s all;
+    width: 100%;
+    opacity: 0;
+    animation: fade 0.6s forwards;
+    margin-left: 4px;
+    
+    @keyframes fade {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    &:active, &:focus {
+      box-shadow: 0 0 0 1.5px #5459e6cc;
+    }
+  }
+}
+
+button.primary {
+    color: #fff;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    padding: 15px 20px;
+    border-radius: 5em;
+    background: #5459e6cc;
+    min-width: 10em;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &:enabled {
+    cursor: pointer;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 2.5em;
+  display: flex;
+  align-items: center;
+ 
+  
+  .progress, .bar {
+    width: 100%;
+    height: 15px;
+  }
+.progress {
+  background: #fff;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+  margin-right: 20px;
+    border-radius: 30px;
+    border: 1px solid #e8e8e8;
+    transition: .3s all;
+  
+  .bar {
+    background: #3ea2de;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+  }
+}
+}
+
+.splash {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-5%, -62%);
+  animation: 4s back linear;
+  z-index: 999;
+  
+  @keyframes back {
+    0% {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      width: 50vw;
+      height: 100vh;
+      display: flex;
+      background-color: #F2F2F2;
+      align-items: center;
+      z-index: 99;
+      transform: translate(0, 0);
+    }
+    
+    90% {
+      background-color: #F2F2F2;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      width: 50vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      z-index: 99;
+      transform: translate(0, 0);
+    }
+    90.01% {
+      top: auto;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      width: auto;
+      height: auto;
+      transform: translate(150%, -150%);
+    }
+    90.02% {
+      background: transparent;
+      transform: translate(150%, -150%);
+    }
+    95% {
+      transform: translate(50%, -48%);
+    }
+    98% {
+      transform: translate(-5%, -48%);
+    }
+
+    100% {
+      top: auto;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      width: auto;
+      height: auto;
+      background: transparent;
+      transform: translate(-5%, -62%);
+    }
+  }
+  
+  
+  .content {
+    animation: zoom 2s linear;
+      animation-delay: 3s;
+    
+    .logo {
+      width: 2.7em;
+      height: 2.7em;
+      margin: auto;
+      display: flex;
+      margin-bottom: .7em;
+      animation: 4s linear scale-logo;
+      @keyframes scale-logo {
+        0% {
+          width: 6em;
+        height: 6em;
+        }
+        80% {
+          width: 6em;
+          height: 6em;
+        }
+        89% {
+          width: 9em;
+          height: 9em;
+        }
+   
+        93% {
+          width: 5em;
+        height: 5em;
+        }
+        98% {
+          width: 4em;
+        height: 4em;
+        }
+        100% {
+          width: 2.7em;
+          height: 2.7em;
+        }
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+        animation: .4s forwards bump;
+        animation-delay: 0.5s;
+        @keyframes bump {
+          100% {
+            transform: scale(1);
+          }
+        }
+        
+        path {
+          transform-origin: 50% 50%;
+          -webkit-transform-origin: 50% 50%;
+          -moz-transform-origin: 50% 50%;
+          transform-box: fill-box;
+          
+          &:first-child {
+            animation: spin 4s linear infinite;
+            @keyframes spin {
+              100% { 
+                transform: rotate(360deg);                    }
+            }
+          }
+          &:last-child {
+            animation: spin2 2s linear infinite;
+            @keyframes spin2 {
+              100% { 
+                transform: rotate(360deg);                    }
+            }
+          }
+        }
+      }
+    }
+    
+
+    
+    h1 {
+      text-align: center;
+      font-size: 1.5em;
+      line-height:40px;
+      margin:0;
+      animation: 2.7s ease 0s normal forwards 1 change;
+      animation-delay: 1s;
+      opacity: 0;
+      @keyframes change {
+        0% {
+          opacity: 0;
+          transform: translate3d(0,35%,0);
+        }
+        10% {
+          opacity: 1;
+          transform: translate3d(0,0,0);
+        }
+        87% {
+          opacity: 1;
+          transform: translate3d(0,0,0);
+        }
+        99.9% {
+          opacity: 0;
+          transform: translate3d(0,40%,0);
+        }
+        100% {
+          display: none;
+        }
+      }
+    }
+  }
+}
